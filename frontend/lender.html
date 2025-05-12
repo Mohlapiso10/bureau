@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lender Dashboard</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  
+  <div id="messageBox" style="display: none;"></div>
+  <h2>All Loan Applications</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Borrower</th>
+        <th>Amount</th>
+        <th>Purpose</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="loanTableBody"></tbody>
+  </table>
+  
+  <button onclick="logout()">Logout</button>
+  <script src="script.js"></script>
+</body>
+</html>

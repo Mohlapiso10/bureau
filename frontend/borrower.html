@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Borrower Dashboard</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body onload="checkAuth('borrower'); fetchBorrowerLoans();">
+
+  <div id="message" style="display: none;"></div>
+
+  <h2>Apply for Loan</h2>
+  <form id="loanForm">
+    <input type="number" id="amount" placeholder="Amount" required />
+    <input type="text" id="reason" placeholder="Reason" required />
+    <button type="submit">Apply</button>
+  </form>  
+
+  <h3>My Loan Applications</h3>
+  <div id="borrowerLoans"></div>
+
+  <button onclick="logout()">Logout</button>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('loanForm').addEventListener('submit', submitLoanApplication);
+  </script>
+</body>
+</html>
