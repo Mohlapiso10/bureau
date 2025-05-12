@@ -1,0 +1,101 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Credit Bureau Admin Dashboard</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #userList, #loanList, #report {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+
+    pre {
+      background: #eef;
+      padding: 10px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="messageBox" style="display: none;"></div>
+  <h1>📊 Credit Bureau Admin Dashboard</h1>
+
+  <button onclick="fetchUsers()">📋 Load All Users</button>
+  <button onclick="fetchLoans()">💸 Load All Loans</button>
+  <button onclick="fetchReport()">📈 Generate Report</button>
+
+  <div id="userList">
+    <h2>Users:</h2>
+    <pre id="usersOutput">...</pre>
+  </div>
+
+  <div id="loanList">
+    <h2>Loans:</h2>
+    <pre id="loansOutput">...</pre>
+  </div>
+
+  <div id="report">
+    <h2>Summary Report:</h2>
+    <pre id="reportOutput">...</pre>
+  </div>
+   <button onclick="logout()">Logout</button>
+
+  <script>
+    const baseUrl = 'http://localhost:5000/api/admin';
+
+    async function fetchUsers() {
+      try {
+        const res = await fetch(`${baseUrl}/users`);
+        const data = await res.json();
+        document.getElementById('usersOutput').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('usersOutput').textContent = 'Failed to load users.';
+        console.error(error);
+      }
+    }
+
+    async function fetchLoans() {
+      try {
+        const res = await fetch(`${baseUrl}/loans`);
+        const data = await res.json();
+        document.getElementById('loansOutput').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('loansOutput').textContent = 'Failed to load loans.';
+        console.error(error);
+      }
+    }
+
+    async function fetchReport() {
+      try {
+        const res = await fetch(`${baseUrl}/report`);
+        const data = await res.json();
+        document.getElementById('reportOutput').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('reportOutput').textContent = 'Failed to load report.';
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>
